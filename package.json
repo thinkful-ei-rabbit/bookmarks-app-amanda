@@ -1,0 +1,12 @@
+{
+  "name": "amanda-bookmark",
+  "version": "1.0.0",
+  "description": "Live URL: https://thinkful-ei-rabbit.github.io/amanda-bookmark/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
