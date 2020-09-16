@@ -1,4 +1,4 @@
-Live URL: https://thinkful-ei-rabbit.github.io/amanda-bookmark/
+Live URL: https://thinkful-ei-rabbit.github.io/bookmarks-app-amanda/
 
 User Stories
 As a user:
