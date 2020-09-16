@@ -1,13 +1,11 @@
 let bookmarks = [];
 let error;
 let adding = false;
-let filter = 0;
 
 
 const findById = function(id) {
   return this.bookmarks.find(currentBookmark => currentBookmark.id === id);
 };
-
 
 const addBookmark = function(bookmark) {
   const newBookmark = Object.assign(bookmark, { expanded: false }, bookmark.rating );
@@ -36,18 +34,25 @@ const setFilter = function(filter) {
   this.filter = filter;
 };
 
-
+function filterByRating(rating) {
+  this.filterBy = Number(rating);
+  if (rating) {
+    return this.list.filter(bookmark => bookmark.rating && bookmark.rating >= this.filterBy);
+  }
+  return this.list;
+}
 
 export default {
   bookmarks,
   error,
   adding,
-  filter,
+  filterBy: '',
   findById,
   addBookmark,
   findAndDelete,
   findAndExpand,
   findAndUpdate,
   setError,
-  setFilter
+  setFilter,
+  filterByRating
 };

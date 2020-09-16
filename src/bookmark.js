@@ -3,7 +3,6 @@ import $ from 'jquery';
 import store from './store';
 import api from './api';
 
-
 //* HTML generating functions *//
 const generateHomeHTML = function() {
   return `
@@ -15,12 +14,12 @@ const generateHomeHTML = function() {
           </button>
           <span class="rating-filter-label">Filter by rating!</span>
           <select id="ratingFilter" name="ratingFilter" aria-label="desired-bookmark-rating">            
-            <option value=""> All </option>
-            <option value="1"> 1 </option>
-            <option value="2"> 2 </option>
-            <option value="3"> 3 </option>
-            <option value="4"> 4 </option>
-            <option value="5"> 5 </option>            
+          <option value="" ${store.filterBy === '' ? 'selected="selected"' : ''}>All</option>
+          <option value="1" ${store.filterBy === 1 ? 'selected="selected"' : ''}>1</option>
+          <option value="2" ${store.filterBy === 2 ? 'selected="selected"' : ''}>2</option>
+          <option value="3" ${store.filterBy === 3 ? 'selected="selected"' : ''}>3</option>
+          <option value="4" ${store.filterBy === 4 ? 'selected="selected"' : ''}>4</option>
+          <option value="5" ${store.filterBy === 5 ? 'selected="selected"' : ''}>5</option>           
           </select>
         </section>
         <ul name="bookmarked-pages" class="js-bookmarked-pages">
@@ -220,13 +219,13 @@ const handleExpandedClick = function() {
   });
 };
 
-const handleRatingFilterSelect = function() {
-  $('main').on('change', '#ratingFilter', event => {
-    event.preventDefault();
-    store.setFilter( $(event.target).children('option:selected').val() );
-    render();
+function handleFilterByRating() {
+  $('.container').on('change', 'select', function(){
+    const rating = $(this).val();
+    const filteredList = store.filterByRating(rating);
+    render(filteredList);
   });
-};
+}
 
 
 const handleErrorCloseClicked = function() {
@@ -243,7 +242,7 @@ function bindEventListeners() {
   handleNewBookmarkSubmit();
   handleDeleteBookmarkClick();
   handleExpandedClick();
-  handleRatingFilterSelect();
+  handleFilterByRating();
   handleErrorCloseClicked();
 }
 
