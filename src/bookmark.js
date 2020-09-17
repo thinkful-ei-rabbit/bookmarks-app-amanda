@@ -220,10 +220,11 @@ const handleExpandedClick = function() {
 };
 
 function handleFilterByRating() {
-  $('.container').on('change', 'select', function(){
+  $('main').on('change', '#ratingFilter', function(){
+    console.log('works');
     const rating = $(this).val();
     const filteredList = store.filterByRating(rating);
-    render(filteredList);
+    render();
   });
 }
 
