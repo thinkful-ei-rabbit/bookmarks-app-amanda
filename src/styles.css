@@ -21,7 +21,7 @@
   
   h1,
   h2 {
-    color: #fcfcfc;
+    color: #50d7f8;
     text-shadow: 1px 1px 2px black;
     text-align:center;
   }
@@ -29,21 +29,20 @@
   
   /* User bookmark CSS */
   
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    border: 1px dotted #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
   
   li {
     border: 1px solid #fff;
     margin: 0.5em;
     padding: 0.5em;
-    background-color:rgb(255, 255, 255, .7);
+    background-color:black;
   }
   
   
@@ -59,10 +58,13 @@
     font-size: 1rem;
     color: inherit;
     margin: 15px;
+    background-color: black;
+    color: #50d7f8
   }
   
   button {
-    background-color: #fff;
+    background-color: black;
+    color: #50d7f8
   }
   
   select {
@@ -72,20 +74,20 @@
   
   select option {
     font-size: 1.2em;
-    color: #000000;
-    background-color: #fff;
+    color: #50d7f8;
+    background-color: black;
   }
   
   .rating-filter-label{
-      color: #fff;
+      color: #50d7f8;
   }
 
   .form-box {
     padding: 0.5rem 0;
     display: flex;
     flex-direction: column;
-    color: black;  
-    background-color: rgb(255, 255, 255, .75);  
+    color: #50d7f8;  
+    background-color: black;  
   }
   
   button,
@@ -105,7 +107,7 @@
   /* Book mark CSS */
   
   a {
-    color: black;  
+    color: #33e459;  
   }
   
   #bookmark-item {
@@ -114,15 +116,15 @@
   
   .bookmarked-pages {
     padding-bottom: 25px;      
-    color: black;
+    color: #50d7f8;
   }
   
   .bookmarked-star-rating {
-    color: black;
+    color: #50d7f8;
   }
   
   .description-container {
-    color: black;  
+    color: #50d7f8;  
   }
   
   .errorContainer {
