@@ -23,7 +23,7 @@ const generateHomeHTML = function() {
           </select>
         </section>
         <ul name="bookmarked-pages" class="js-bookmarked-pages">
-          <li>hi</li>
+          <li></li>
         </ul>
       <div class="errorContainer"></div>
       </section>`;
