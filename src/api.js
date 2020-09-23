@@ -1,3 +1,5 @@
+import store from './store';
+
 const BASE_URL = 'https://thinkful-list-api.herokuapp.com/amanda';
 
 const listApiFetch = function (...args) {
@@ -9,6 +11,10 @@ const listApiFetch = function (...args) {
         // if the response is not a 200 code (ok code) build error object.
         error = { code: response.status };
         //console.log(`${error.code} object created`);
+        if (!response.headers.get('content-type').includes('json')) {
+          error.message = response.statusText;
+          return Promise.reject(error);
+        }
       }
       return response.json();
     })

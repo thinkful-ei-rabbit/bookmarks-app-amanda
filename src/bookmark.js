@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import store from './store';
 import api from './api';
+import './styles.css';
 
 //* HTML generating functions *//
 const generateHomeHTML = function() {
@@ -9,7 +10,7 @@ const generateHomeHTML = function() {
       <h1>Awesome Bookmarks!</h1>
       <section class="bookmark-container">
         <section class="button-container">
-          <button name="js-add-new-button" class="js-add-new-button add-new-button">
+          <button name="js-add-new-button" id="js-add-new-button class="js-add-new-button">
               <span class="button-label">Add new bookmark!</span>
           </button>
           <span class="rating-filter-label">Filter by rating!</span>
@@ -35,18 +36,17 @@ const generateNewBookmarkHTML = function() {
           <section class="home-container">
           <form id="bookmarkForm" class="bookmark-form" aria-label="new-bookmark-form">
             <h1>Add a new bookmark:</h1>
-                  <section class="form-box">
-                      <label for="bookmark-entry"></label>
+                  <section class="form-box" id="form-box">
                       <span>Website Name:</span>
-                      <input type="text" name="bookmarkTitle" class="js-bookmark-title" placeholder="google" aria-label="new-bookmark-name" required>
+                      <input type="text" name="bookmarkTitle" id="bookmarkTitle" class="js-bookmark-title" placeholder="Website" aria-label="new-bookmark-name" required>
                   </section>
-                  <section class="form-box">
+                  <section class="form-box" id="form-box">
                       <label for="website-url"></label>
                       <span>Website Url:</span>
-                      <input type="text" name="websiteURL" class="js-bookmark-entry" placeholder="https://google.com" aria-label="Bookmark url starts with https://" required>
+                      <input type="text" name="websiteURL" id="website-url" class="js-bookmark-entry" placeholder="https://google.com" aria-label="Bookmark url starts with https://" required>
                   </section>
                   <section class="form-box">
-                  <label for="bookmarkRating">Bookmark Rating</label>                
+                  <label for="reatingSelect">Bookmark Rating</label>                
                   <select name="ratingSelect-zero-to-five" id='ratingSelect' aria-label="Bookmark-rating">
                   <option value="1"> 1 </option>
                   <option value="2"> 2 </option>
@@ -59,7 +59,7 @@ const generateNewBookmarkHTML = function() {
                       <label for="website-description">Description:</label>
                       <textarea type="text" 
                       name="descriptionForm" 
-                      id='descriptionForm' 
+                      id='website-description' 
                       placeholder="Why you do you like this website?"
                       aria-label="Enter what you like about this site."></textarea>
                   </section>
@@ -91,8 +91,8 @@ const generateBookmarkElementExpanded = function(bookmark) {
         <section class="link-container"><a href="${bookmark.url}" target="_blank">${bookmark.title}</a></section>    
       <article class="description-container">${bookmark.desc}</article>      
       
-      <form aria-label="edit-or-delete-bookmark">
-        <button class="bookmark-delete js-bookmark-delete">
+      <form aria-label="js-delete-bookmark">
+        <button class="delete-bookmark id="js-delete-bookmark" js-delete-bookmark">
           <span class="bookmark-label">Delete</span>
         </button>
       </form>   
@@ -101,8 +101,7 @@ const generateBookmarkElementExpanded = function(bookmark) {
 };
   
   
-const generateBookmarks = function(bookmarks) {
-  // const allBookmarks = store.bookmarks.map((bookmark) => generateBookmarkElementCondensed(bookmark));
+const generateBookmarks = function() {
   const someBookmarks = [];
   //filter by rating needs to come first.
   store.bookmarks.map((bookmark) => {
@@ -146,8 +145,7 @@ function renderNewBookmarkPage() {
 
 function render() {
   renderError();
-  const minRating = parseInt(store.filter);
-  let bookmarks = [...store.bookmarks].filter(bookmark => bookmark.rating >= minRating);
+  let bookmarks = [...store.bookmarks];
   const bookmarksElementString = generateBookmarks(bookmarks);
   $('main').html(generateHomeHTML);
   $('.js-bookmarked-pages').html(bookmarksElementString);
@@ -157,7 +155,7 @@ function render() {
 
 
 function handleNewBookmarkClick() {
-  $('main').on('click', '.js-add-new-button', (event) => {
+  $('main').on('click', '#add-new-button', (event) => {
     event.preventDefault();
     renderNewBookmarkPage();
   });
@@ -194,7 +192,7 @@ const getBookmarkIdFromElement = function(bookmark) {
 };
 
 const handleDeleteBookmarkClick = function() {
-  $('main').on('click', '.js-bookmark-delete', event => {
+  $('main').on('click', '#delete-bookmark', event => {
     const id = getBookmarkIdFromElement(event.currentTarget);
 
     api.deleteBookmark(id)
