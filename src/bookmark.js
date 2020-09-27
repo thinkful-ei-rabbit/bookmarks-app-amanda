@@ -10,7 +10,7 @@ const generateHomeHTML = function() {
       <h1>Awesome Bookmarks!</h1>
       <section class="bookmark-container">
         <section class="button-container">
-          <button name="js-add-new-button" id="js-add-new-button class="js-add-new-button">
+          <button name="js-add-new-button" id="js-add-new-button" class="js-add-new-button">
               <span class="button-label">Add new bookmark!</span>
           </button>
           <span class="rating-filter-label">Filter by rating!</span>
@@ -59,7 +59,7 @@ const generateNewBookmarkHTML = function() {
                       <label for="website-description">Description:</label>
                       <textarea type="text" 
                       name="descriptionForm" 
-                      id='website-description' 
+                      id="website-description" 
                       placeholder="Why you do you like this website?"
                       aria-label="Enter what you like about this site."></textarea>
                   </section>
@@ -92,7 +92,7 @@ const generateBookmarkElementExpanded = function(bookmark) {
       <article class="description-container">${bookmark.desc}</article>      
       
       <form aria-label="js-delete-bookmark">
-        <button class="delete-bookmark id="js-delete-bookmark" js-delete-bookmark">
+        <button class="js-delete-bookmark"
           <span class="bookmark-label">Delete</span>
         </button>
       </form>   
@@ -155,7 +155,7 @@ function render() {
 
 
 function handleNewBookmarkClick() {
-  $('main').on('click', '#add-new-button', (event) => {
+  $('main').on('click', '#js-add-new-button', (event) => {
     event.preventDefault();
     renderNewBookmarkPage();
   });
@@ -169,7 +169,7 @@ function handleNewBookmarkSubmit() {
       "title": $('input[name=bookmarkTitle]').val(),
       "rating": $('#ratingSelect').val(),
       "url": $('input[name=websiteURL]').val(),
-      "desc": $('#descriptionForm').val(), 
+      "desc": $('#website-description').val(), 
     };
     api.createBookmark(newBookmark)
       .then((newBookmark) => {
@@ -192,7 +192,7 @@ const getBookmarkIdFromElement = function(bookmark) {
 };
 
 const handleDeleteBookmarkClick = function() {
-  $('main').on('click', '#delete-bookmark', event => {
+  $('main').on('click', '.js-delete-bookmark', event => {
     const id = getBookmarkIdFromElement(event.currentTarget);
 
     api.deleteBookmark(id)
